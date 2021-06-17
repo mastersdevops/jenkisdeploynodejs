@@ -7,3 +7,11 @@
 
     docker run -it -p 8000 dach092/nodeapp
 
+3° Hemos probado desde jenkins un proyecto libre que nos crea la imagen
+
+4° Ingresar a Docker-Hub
+    user: dach092
+    password: alineacion092
+
+
+
