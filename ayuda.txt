@@ -1,0 +1,9 @@
+
+1° Primero verificamos si se puede construir la imagen con el siguiente comando docker:
+
+    docker build . -t dach092/nodeapp
+
+2° Levantamos la imagen creada en un contenedor con el siguiente comando docker:
+
+    docker run -it -p 8000 dach092/nodeapp
+

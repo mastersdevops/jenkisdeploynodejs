@@ -1,0 +1,24 @@
+{
+  "name": "dach-nodeapp",
+  "version": "1.0.0",
+  "description": "Test Hello Wordl using NodeJS",
+  "main": "main.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mastersdevops/jenkisdeploynodejs"
+  },
+  "keywords": [
+    "node",
+    "docker",
+    "dockerfile"
+  ],
+  "author": "dach_092@hotmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "test": ">=0.6.0"
+  }
+}
