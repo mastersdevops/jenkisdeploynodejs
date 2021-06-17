@@ -1,26 +1,35 @@
-node {
-    def app
-
-    stage('Clone repository') {
-        checkout scm
+pipeline {
+    environment {
+        registry = "dach092/nodeapp"
+        registryCredential = 'MyDockerHub'
+        dockerImage = ''
     }
 
-    stage('Build image') {
-        app = docker.build("dach092/nodeapp")
-    }
+    agent any
 
-    stage('Test image') {
-        app.inside {
-            echo "Test passed"
-        }
-    }
-
-    stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'My DockerHub') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+    stages {
+        stage('Cloning Git') {
+            steps {
+                git 'https://github.com/mastersdevops/jenkisdeploynodejs.git'
+            }
         }
 
-        echo "Trying to Push Docker Build to DockerHub"
+        stage('Building image') {
+            steps {
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+
+        stage('Deploy Image') {
+            steps {
+                script {
+                    docker.withRegistry('',registryCredential) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
     }
 }
