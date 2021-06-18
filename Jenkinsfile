@@ -33,16 +33,15 @@ pipeline {
             }
         }
 
-        stage('Remove Unused Docker Image') {
-            steps {
-                sh "docker rmi $registry:$BUILD_NUMBER"            
-            }
-        }
+        // stage('Remove Unused Docker Image') {
+        //     steps {
+        //         sh "docker rmi $registry:$BUILD_NUMBER"            
+        //     }
+        // }
 
         stage('Publish Docker Image') {
-            steps {
-                sh "docker stop $dockerContainer || true && docker rm $dockerContainer || true"
-                sh "docker run -d --name $dockerContainer --publish -p 8000 $registry:$BUILD_NUMBER"
+            steps {            
+                sh "docker run -d --name $dockerContainer -p 8000 $registry:$BUILD_NUMBER"
             }
         }
     }
