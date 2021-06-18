@@ -14,4 +14,23 @@
     password: alineacion092
 
 
+------------------------------------------------------------------------------------------------------
 
+Instale Cygwin
+
+- Cuando dentro del jenkinsfile quieres ejecutar comando Linux en un entorno de Jenkins de Windows
+  Ejemplo: sh "docker rmi $registry:$BUILD_NUMBER" --> linea de referencia
+
+1° Instale el Cygwin 
+
+2° Configuramos el shell de Jenkins
+   Administrar Jenkins ---> Configurar Sistema ---> Ejecutable para la línea de comandos (shell) aca colocar la ubicacion del sh.exe en 
+                                                    este caso seria C:\cygwin64\bin\sh.exe
+
+
+------------------------------------------------------------------------------------------------------
+
+Cuando sale error porque en el Jenkinsfile ejecutar comando Linux realizar la siguiente accion:
+
+    Windows no comprende el comando "sh". Para habilitar esta función, agregue C:\Archivos de programa\Git\bin y
+    C:\Archivos de programa\Git\usr\bin a la variable de entorno del sistema PATH y reiniciar el sistema
