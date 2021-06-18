@@ -34,3 +34,11 @@ Cuando sale error porque en el Jenkinsfile ejecutar comando Linux realizar la si
 
     Windows no comprende el comando "sh". Para habilitar esta función, agregue C:\Archivos de programa\Git\bin y
     C:\Archivos de programa\Git\usr\bin a la variable de entorno del sistema PATH y reiniciar el sistema
+
+
+
+        // stage('Remove Unused Docker Image') {
+        //     steps {
+        //         sh "docker rmi $registry:$BUILD_NUMBER"            
+        //     }
+        // }
