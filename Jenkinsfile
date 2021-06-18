@@ -3,6 +3,7 @@ pipeline {
         registry = "dach092/nodeapp"
         registryCredential = 'MyDockerHub'
         dockerImage = ''
+        dockerContainer = 'NodeApp'
     }
 
     agent any
@@ -35,12 +36,14 @@ pipeline {
         stage('Remove Unused Docker Image') {
             steps {
                 sh "docker rmi $registry:$BUILD_NUMBER"
+                sh "docker rmi $registry:latest"
             }
         }
 
         stage('Publish Docker Image') {
             steps {
-                sh "docker run -it -p 8000 $registry:$BUILD_NUMBER"
+                sh "docker stop $dockerContainer || true && docker rm $dockerContainer || true"
+                sh "docker run -d --name $dockerContainer --publish -p 8000 $registry:$BUILD_NUMBER"
             }
         }
     }
